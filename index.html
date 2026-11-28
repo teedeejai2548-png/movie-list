@@ -30,7 +30,7 @@ function show(){
   let hits=D.map((d,i)=>[d,i]).filter(([d,i])=>t.every(w=>idx[i].includes(w))&&(mode=="all"||(mode=="new"?isNew(d):d[2]==mode))).map(x=>x[0]);
   if(mode=="new")hits.sort((a,b)=>b[4].localeCompare(a[4]));
   n.textContent=`พบ ${hits.length} เรื่อง · อัปเดต ${built}`;
-  r.innerHTML=hits.slice(0,300).map(d=>`<li>${esc(d[0])}<small><b>กล่อง ${d[2]}</b> (${esc(d[3])}) · ${esc(d[1])}${isNew(d)?" · 🆕 เพิ่ม "+d[4]:""}</small></li>`).join("");
+  r.innerHTML=hits.slice(0,300).map(d=>`<li>${esc(d[0])}<small><b>กล่อง ${d[2]}</b> ${d[3]?"("+esc(d[3])+")":""} · ${esc(d[1])}${isNew(d)?" · 🆕 เพิ่ม "+d[4]:""}</small></li>`).join("");
 }
 q.oninput=show;
 // data.json is fetched fresh each visit (page itself may be cached up to 10 min by GitHub Pages)
